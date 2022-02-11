@@ -12,14 +12,14 @@ function setup() {
 }
 
 function modelLoaded() {
-  console.log("Model Loaded!")
+  console.log("¡Modelo cargado!")
   status = true;
 }
 
 function start()
 {
   objectDetector = ml5.objectDetector('cocossd', modelLoaded);
-  document.getElementById("status").innerHTML = "Status : Detecting Objects";
+  document.getElementById("status").innerHTML = "Estado: detectando objetos";
   object_name = document.getElementById("object_name").value;
 }
 
@@ -37,7 +37,7 @@ function draw() {
       {
         objectDetector.detect(video, gotResult);
         for (i = 0; i < objects.length; i++) {
-          document.getElementById("status").innerHTML = "Status : Object Detected";
+          document.getElementById("status").innerHTML = "Estado: objeto detectado";
           
           fill("#FF0000");
           percent = floor(objects[i].confidence * 100);
@@ -51,14 +51,14 @@ function draw() {
           {
             video.stop();
             objectDetector.detect(gotResult);
-            document.getElementById("object_status").innerHTML = object_name + " Found";
+            document.getElementById("object_status").innerHTML = object_name + " encontrado";
             synth = window.speechSynthesis;
-            utterThis = new SpeechSynthesisUtterance(object_name + "Found");
+            utterThis = new SpeechSynthesisUtterance(object_name + "encontrado");
             synth.speak(utterThis);
           }
           else
           {
-            document.getElementById("object_status").innerHTML = object_name + " Not Found";
+            document.getElementById("object_status").innerHTML = object_name + " no encontrado";
           }          
          }
       }
